@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rock, Paper, Scissors game</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/app.js" defer></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="main-container">
+      <header role="heading">
+        <div class="title"></div>
+        <div class="score">
+          <h2>SCORE</h2>
+          <span>12</span>
+        </div>
+      </header>
+
+      <main class="choice-group">
+        <div id="paper" class="choice"></div>
+        <div id="scissors" class="choice"></div>
+        <div id="rock" class="choice"></div>
+      </main>
+
+      <footer><button id="rules-btn">RULES</button></footer>
+    </div>
+    <div class="rules-container hidden">
+      <div class="rules-title">RULES</div>
+      <div class="rules-details"></div>
+      <div class="cross"></div>
+    </div>
+  </body>
+</html>

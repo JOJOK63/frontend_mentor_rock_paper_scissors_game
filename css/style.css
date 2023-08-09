@@ -1,0 +1,200 @@
+* {
+  box-sizing: border-box;
+  box-shadow: 0 0 0 1px red inset;
+}
+
+:root {
+  --dark-text: hsl(229, 25%, 31%);
+  --score-text: hsl(229, 64%, 46%);
+  --header-outline: hsl(217, 16%, 45%);
+  --cyan: linear-gradient(to right, hsl(189, 59%, 53%), hsl(189, 58%, 57%));
+  --radial-gradient: radial-gradient(
+    circle,
+    hsl(214, 47%, 23%),
+    hsl(237, 49%, 15%)
+  );
+  --scissors-gradient: linear-gradient(
+    to right,
+    hsl(39, 89%, 49%),
+    hsl(40, 84%, 53%)
+  );
+  --paper-gradient: linear-gradient(
+    to right,
+    hsl(230, 89%, 62%),
+    hsl(230, 89%, 65%)
+  );
+  --rock-gradient: linear-gradient(
+    to right,
+    hsl(349, 71%, 52%),
+    hsl(349, 70%, 56%)
+  );
+  --lizard-gradient: linear-gradient(
+    to right,
+    hsl(261, 73%, 60%),
+    hsl(261, 72%, 63%)
+  );
+  --cyan: linear-gradient(to right, hsl(189, 59%, 53%), hsl(189, 58%, 57%));
+
+  --white-opacity: rgba(254, 254, 254, 0.242);
+  --title-dark-grey: #3b3f5b;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  font-family: "Barlow Semi Condensed", sans-serif;
+}
+.main-container {
+  width: 100%;
+  height: 100%; /* Utilisez 100vh pour 100% de la hauteur de la fenêtre visible */
+  padding: 30px;
+  margin: auto;
+  background: var(--radial-gradient);
+}
+
+header {
+  margin: 0 auto 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border: 3px solid var(--white-opacity);
+  border-radius: 8px;
+}
+
+header .title {
+  width: 100px;
+  height: 60px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-image: url(../assets/images/logo.svg);
+  background-size: contain;
+}
+
+header .score {
+  width: 80px;
+
+  border-radius: 8px;
+  background-color: white;
+  color: var(--dark-text);
+}
+
+.score h2 {
+  font-size: 12px;
+}
+
+.score span {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.choice-group {
+  width: 100%;
+  height: 300px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  padding: 25px;
+}
+
+.choice {
+  position: relative; /* Nécessaire pour positionner les pseudo-éléments */
+  width: 120px;
+  height: 120px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  border-radius: 60px;
+  border: 15px solid;
+  background-color: white;
+  background-size: 50px;
+  background-position: center center;
+}
+
+.choice::before {
+  content: "";
+  position: absolute;
+  inset: -2px; /* Marge intérieure négative pour simuler l'ombre à l'intérieur de la bordure */
+  box-shadow: inset 0px 4px 2px 2px rgba(0, 0, 0, 0.2); /* Ombre interne */
+  border-radius: 60px;
+}
+
+#paper {
+  background-image: url("../assets/images/icon-paper.svg");
+  border-color: #4a69f6; /* Modifier la couleur de la bordure */
+  box-shadow: 0px 3px 0px 1px #2d449a;
+}
+
+#scissors {
+  background-image: url("../assets/images/icon-scissors.svg");
+  border-color: #e9a11a; /* Modifier la couleur de la bordure */
+  box-shadow: 0px 3px 0px 1px #c26d24;
+}
+
+#rock {
+  background-image: url("../assets/images/icon-rock.svg");
+  border-color: #e03d57; /* Modifier la couleur de la bordure */
+  box-shadow: 0px 3px 0px 1px #981a38;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 50px;
+}
+
+footer button {
+  cursor: pointer;
+  width: 120px;
+  height: 40px;
+  background-color: transparent;
+  color: white;
+  border: 2px solid var(--white-opacity);
+  border-radius: 8px;
+  font-weight: 600;
+  letter-spacing: 3px;
+}
+
+/**  CSS pour la page RULES*/
+.hidden {
+  display: none;
+}
+
+.rules {
+  width: 100%;
+  height: 100vh;
+  background-color: white;
+}
+
+.rules-title {
+  padding: 50px;
+  color: var(--title-dark-grey);
+  font-weight: 700;
+  font-size: 30px;
+}
+
+.rules-details {
+  width: 100%;
+  height: 500px;
+  background-image: url(../assets/images/image-rules.svg);
+  background-repeat: no-repeat;
+  background-size: 320px;
+  background-position: center center;
+}
+
+.cross {
+  width: 100%;
+  height: 30px;
+  background-image: url(../assets/images/icon-close.svg);
+  background-repeat: no-repeat;
+  background-size: 20px;
+  text-align: center;
+  background-position: center center;
+}
