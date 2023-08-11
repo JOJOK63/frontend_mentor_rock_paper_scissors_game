@@ -1,6 +1,8 @@
 * {
   box-sizing: border-box;
   box-shadow: 0 0 0 1px red inset;
+  margin: 0;
+  padding: 0;
 }
 
 :root {
@@ -43,8 +45,6 @@ html,
 body {
   width: 100%;
   height: 100%;
-  margin: 0;
-  padding: 0;
   text-align: center;
   font-family: "Barlow Semi Condensed", sans-serif;
 }
@@ -197,4 +197,45 @@ footer button {
   background-size: 20px;
   text-align: center;
   background-position: center center;
+}
+
+/* css for message and play again button*/
+.result-container {
+  background: red;
+  position: absolute;
+  top: 150px; /* Position relative au bas du header */
+  left: 50%; /* Centrer horizontalement */
+  transform: translateX(-50%); /* Centrer horizontalement */
+  width: 360px;
+  height: 450px;
+  z-index: 2000;
+}
+
+.display-group-choice {
+}
+
+.group-user-choice {
+}
+
+.group-ia-choice {
+}
+
+.result-container p {
+  font-size: 50px;
+  font-weight: 700;
+  height: auto;
+  color: white;
+  text-transform: uppercase;
+  padding: 5px;
+}
+
+#play-again {
+  width: 200px;
+  height: 45px;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 2px;
+  color: var(--title-dark-grey);
+  background-color: white;
 }
