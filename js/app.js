@@ -1,15 +1,17 @@
 const main_container = document.querySelector(".main-container");
 const rules_btn = document.getElementById("rules-btn");
 const cross = document.querySelector(".cross");
+const showResult = document.querySelector(".result-container");
+const result = document.querySelector(".result-container p");
+const playAgain = document.getElementById("play-again");
+
 var score = 0;
 var dataLocalStorage = localStorage.getItem("score");
-
 const choices = {
   1: "paper",
   2: "scissors",
   3: "rock",
 };
-
 const rules_container = document.querySelector(".rules-container");
 
 rules_btn.addEventListener("click", (e) => {
@@ -48,8 +50,9 @@ function whoWin(userChoice, iaChoice) {
     (userChoice === "scissors" && iaChoice === "paper")
   ) {
     displayWinner("you win");
-    score++;
-    // updateDataFromLocalStorage();
+    score = score + 1;
+    updateScoreOnLocalStorage(score);
+    displayScore(score);
   } else {
     displayWinner("you lose ");
   }
@@ -57,8 +60,8 @@ function whoWin(userChoice, iaChoice) {
 
 // Local Storage Manipulation
 function getDataFromLocalStorage() {
-  console.log(dataLocalStorage);
   if (dataLocalStorage) {
+    score = parseInt(dataLocalStorage);
     displayScore(dataLocalStorage);
   } else {
     score = 0;
@@ -67,9 +70,8 @@ function getDataFromLocalStorage() {
   }
 }
 
-function updateDataFromLocalStorage() {
-  let updatedData = JSON.stringify({ score: score });
-  localStorage.setItem("score", updatedData);
+function updateScoreOnLocalStorage(newScore) {
+  localStorage.setItem("score", newScore); // Met à jour le score dans le localStorage
 }
 
 // Function to display
@@ -79,9 +81,15 @@ function displayScore(score) {
 }
 
 function displayWinner(message) {
-  const result = document.querySelector(".display-result");
   result.innerText = message;
+  showResult.classList.remove("hidden");
 }
+
+function displaySelection() {}
+
+playAgain.addEventListener("click", () => {
+  showResult.classList.add("hidden");
+});
 
 //fct ia choice
 function getRandomChoice() {
@@ -89,17 +97,7 @@ function getRandomChoice() {
   return choices[randomNum];
 }
 
-// btn de test de focntion
-var bouton = document.getElementById("monBouton");
-bouton.addEventListener("click", () => {
-  whoWin(choices[1], choices[3]);
-});
-
 /*
-
-    Mettre à jour le score :
-    Ajoutez un élément dans votre HTML pour afficher le score. Mettez à jour le score chaque fois qu'une manche est jouée.
-
     Afficher les résultats :
     Après avoir déterminé le gagnant de la manche, affichez le résultat à l'utilisateur. Vous pouvez utiliser des alertes, des messages dans le DOM ou d'autres éléments pour afficher le résultat.
 
