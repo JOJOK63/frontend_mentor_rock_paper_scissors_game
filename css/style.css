@@ -57,7 +57,6 @@ body {
 }
 
 header {
-  position: relative;
   margin: 0 auto 50px;
   display: flex;
   justify-content: space-between;
@@ -208,7 +207,7 @@ footer button {
   left: 50%; /* Centrer horizontalement */
   transform: translateX(-50%); /* Centrer horizontalement */
   width: 360px;
-  height: 400px;
+  height: 450px;
   z-index: 2000;
 }
 
