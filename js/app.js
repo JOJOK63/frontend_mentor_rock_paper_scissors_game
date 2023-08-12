@@ -2,8 +2,11 @@ const main_container = document.querySelector(".main-container");
 const rules_btn = document.getElementById("rules-btn");
 const cross = document.querySelector(".cross");
 const showResult = document.querySelector(".result-container");
-const result = document.querySelector(".result-container p");
+const user_choice_div = document.querySelector(".user-choice");
+const ia_choice_div = document.querySelector(".ia-choice")
+const result = document.querySelector(".result-container #message-information-result");
 const playAgain = document.getElementById("play-again");
+const reset_score = document.querySelector(".reset")
 
 var score = 0;
 var dataLocalStorage = localStorage.getItem("score");
@@ -43,18 +46,18 @@ function whoWin(userChoice, iaChoice) {
     (userChoice === "rock" && iaChoice === "rock") ||
     (userChoice === "scissors" && iaChoice === "scissors")
   ) {
-    displayWinner("No one win");
+    displayWinner("No one win",userChoice,iaChoice);
   } else if (
     (userChoice === "paper" && iaChoice === "rock") ||
     (userChoice === "rock" && iaChoice === "scissors") ||
     (userChoice === "scissors" && iaChoice === "paper")
   ) {
-    displayWinner("you win");
+    displayWinner("you win",userChoice,iaChoice);
     score = score + 1;
     updateScoreOnLocalStorage(score);
     displayScore(score);
   } else {
-    displayWinner("you lose ");
+    displayWinner("you lose ",userChoice,iaChoice);
   }
 }
 
@@ -80,12 +83,19 @@ function displayScore(score) {
   scoreDisplay.innerText = score;
 }
 
-function displayWinner(message) {
-  result.innerText = message;
+function displayWinner(message,user_choice,ia_choice) {
   showResult.classList.remove("hidden");
-}
+  result.innerText = message;
 
-function displaySelection() {}
+  user_choice_div.classList.add("choice-result");
+  ia_choice_div.classList.add("choice-result");
+  user_choice_div.id=`${user_choice}`
+  ia_choice_div.id=`${ia_choice}`
+ 
+  user_choice_div.classList.add("animate");
+  ia_choice_div.classList.add("animate");
+  result.classList.add("animate");
+}
 
 playAgain.addEventListener("click", () => {
   showResult.classList.add("hidden");
@@ -97,6 +107,11 @@ function getRandomChoice() {
   return choices[randomNum];
 }
 
+reset_score.addEventListener("click", () => {
+  score = 0;
+  localStorage.setItem("score", score);
+  displayScore(score);
+})
 /*
     Afficher les résultats :
     Après avoir déterminé le gagnant de la manche, affichez le résultat à l'utilisateur. Vous pouvez utiliser des alertes, des messages dans le DOM ou d'autres éléments pour afficher le résultat.
