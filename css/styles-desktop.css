@@ -1,1 +1,67 @@
 @import url("styles-mobile.css");
+
+header .score {
+  width: 100px;
+  height: 100px;
+}
+
+.score h2 {
+  font-size: 16px;
+  margin-bottom: 2px;
+}
+
+.score span {
+  font-size: 35px;
+  font-weight: 700;
+}
+
+.choice-group {
+  justify-content: space-around;
+  width: 80%;
+}
+
+.choice {
+  position: relative;
+  /* Nécessaire pour positionner les pseudo-éléments */
+  width: 155px;
+  height: 155px;
+  border-radius: 100px;
+}
+
+footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/**  CSS pour la page RULES*/
+.rules-container {
+  background-color: white !important;
+  width: 40%;
+  height: auto;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.rules-title {
+  text-align: start;
+}
+.cross {
+  position: absolute;
+  top: 8%;
+  left: 80%;
+  width: 10%;
+  height: 50px;
+  background-image: url(../assets/images/icon-close.svg);
+  background-repeat: no-repeat;
+  background-size: 50px;
+  text-align: center;
+  background-position: center center;
+}
+
+/* display winner css*/
+
+.result-container {
+  background: transparent;
+}

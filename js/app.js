@@ -35,14 +35,14 @@ cross.addEventListener("click", (e) => {
 getDataFromLocalStorage();
 
 /** Gestion des choix tour 1 */
-
+const choices_group_div = document.querySelector(".choice-group");
 const choices_btn = document.querySelectorAll(".choice");
-
 for (let choice of choices_btn) {
   choice.addEventListener("click", (e) => {
     const user_choice = choice.id;
     const ia_choice = getRandomChoice(); // À définir - génère le choix de l'IA
     whoWin(user_choice, ia_choice);
+    choices_group_div.classList.add("hidden");
   });
 }
 
@@ -125,6 +125,7 @@ function displayWinner(message, user_choice, ia_choice) {
 playAgain.addEventListener("click", () => {
   toggleMoveOrHiddenOrWinner();
   showResult.classList.add("hidden");
+  choices_group_div.classList.remove("hidden");
   winnerIa = false;
   winnerUser = false;
 });
