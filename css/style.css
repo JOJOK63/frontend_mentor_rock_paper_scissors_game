@@ -10,21 +10,31 @@
   --score-text: hsl(229, 64%, 46%);
   --header-outline: hsl(217, 16%, 45%);
   --cyan: linear-gradient(to right, hsl(189, 59%, 53%), hsl(189, 58%, 57%));
-  --radial-gradient: radial-gradient(circle,
-      hsl(214, 47%, 23%),
-      hsl(237, 49%, 15%));
-  --scissors-gradient: linear-gradient(to right,
-      hsl(39, 89%, 49%),
-      hsl(40, 84%, 53%));
-  --paper-gradient: linear-gradient(to right,
-      hsl(230, 89%, 62%),
-      hsl(230, 89%, 65%));
-  --rock-gradient: linear-gradient(to right,
-      hsl(349, 71%, 52%),
-      hsl(349, 70%, 56%));
-  --lizard-gradient: linear-gradient(to right,
-      hsl(261, 73%, 60%),
-      hsl(261, 72%, 63%));
+  --radial-gradient: radial-gradient(
+    circle,
+    hsl(214, 47%, 23%),
+    hsl(237, 49%, 15%)
+  );
+  --scissors-gradient: linear-gradient(
+    to right,
+    hsl(39, 89%, 49%),
+    hsl(40, 84%, 53%)
+  );
+  --paper-gradient: linear-gradient(
+    to right,
+    hsl(230, 89%, 62%),
+    hsl(230, 89%, 65%)
+  );
+  --rock-gradient: linear-gradient(
+    to right,
+    hsl(349, 71%, 52%),
+    hsl(349, 70%, 56%)
+  );
+  --lizard-gradient: linear-gradient(
+    to right,
+    hsl(261, 73%, 60%),
+    hsl(261, 72%, 63%)
+  );
   --cyan: linear-gradient(to right, hsl(189, 59%, 53%), hsl(189, 58%, 57%));
 
   --white-opacity: rgba(254, 254, 254, 0.242);
@@ -87,20 +97,19 @@ header .score {
   font-weight: 600;
 }
 
-.score .reset{
- color: var(--dark-text);
- background-color: transparent;
- border: none;
- padding: 3px 0 5px 0 ;
- cursor: pointer;
- background-image: url(../assets/images/reset_undo_arrow_icon_149006.svg);
- width: 16px;
- height: 16px;
- background-position: center center;
- background-size: 10px;
- background-repeat: no-repeat;  
+.score .reset {
+  color: var(--dark-text);
+  background-color: transparent;
+  border: none;
+  padding: 3px 0 5px 0;
+  cursor: pointer;
+  background-image: url(../assets/images/reset_undo_arrow_icon_149006.svg);
+  width: 16px;
+  height: 16px;
+  background-position: center center;
+  background-size: 10px;
+  background-repeat: no-repeat;
 }
-
 
 .choice-group {
   width: 100%;
@@ -180,7 +189,7 @@ footer button {
 
 /**  CSS pour la page RULES*/
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .rules {
@@ -240,7 +249,6 @@ footer button {
   margin: 40px 0;
 }
 
-
 .group {
   width: 150px;
   height: 150px;
@@ -249,7 +257,6 @@ footer button {
   align-items: center;
   justify-content: space-around;
 }
-
 
 .choice-result {
   width: 100px;
@@ -263,9 +270,11 @@ footer button {
   background-position: center center;
 }
 
-.user-choice {}
+.user-choice {
+}
 
-.ia-choice {}
+.ia-choice {
+}
 
 .group p {
   font-weight: 600;
@@ -293,20 +302,40 @@ footer button {
   background-color: white;
 }
 
-.user-choice .animate {
+.group-user-choice {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 3s ease-in-out, transform 3s ease-in-out;
+  animation-delay: 0s;
 }
 
-.ia-choice .animate {
+.group-ia-choice {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 3s ease-in-out, transform 3s ease-in-out;
+  animation-delay: 1.5s; /* Décalé de 0.2s par rapport au premier élément */
 }
 
-#message-information-result .animate {
+#message-information-result {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 3s ease-in-out, transform 3s ease-in-out;
+  animation-delay: 2s; /* Décalé de 0.2s par rapport au deuxième élément */
+}
+
+#play-again {
+  opacity: 0;
+  animation-delay: 3s; /* Décalé de 0.2s par rapport au deuxième élément */
+}
+
+.move {
+  animation: mouvement 1.2s ease-in-out 1s;
+  animation-fill-mode: forwards;
+}
+
+.winner {
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes mouvement {
+  from {
+    opacity: 0%;
+  }
+  to {
+    opacity: 100%;
+  }
 }

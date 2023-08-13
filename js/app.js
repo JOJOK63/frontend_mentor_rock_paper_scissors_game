@@ -3,10 +3,16 @@ const rules_btn = document.getElementById("rules-btn");
 const cross = document.querySelector(".cross");
 const showResult = document.querySelector(".result-container");
 const user_choice_div = document.querySelector(".user-choice");
-const ia_choice_div = document.querySelector(".ia-choice")
-const result = document.querySelector(".result-container #message-information-result");
+const ia_choice_div = document.querySelector(".ia-choice");
+const group_user_choice = document.querySelector(".group-user-choice");
+const group_ia_choice = document.querySelector(".group-ia-choice");
+const result = document.querySelector(
+  ".result-container #message-information-result"
+);
 const playAgain = document.getElementById("play-again");
-const reset_score = document.querySelector(".reset")
+const reset_score = document.querySelector(".reset");
+var winnerIa = false;
+var winnerUser = false;
 
 var score = 0;
 var dataLocalStorage = localStorage.getItem("score");
@@ -40,24 +46,28 @@ for (let choice of choices_btn) {
   });
 }
 
-function whoWin(userChoice, iaChoice) {
+function whoWin(userChoice, iaChoice, winnerUser, winnerIa) {
   if (
     (userChoice === "paper" && iaChoice === "paper") ||
     (userChoice === "rock" && iaChoice === "rock") ||
     (userChoice === "scissors" && iaChoice === "scissors")
   ) {
-    displayWinner("No one win",userChoice,iaChoice);
+    displayWinner("No one win", userChoice, iaChoice);
   } else if (
     (userChoice === "paper" && iaChoice === "rock") ||
     (userChoice === "rock" && iaChoice === "scissors") ||
     (userChoice === "scissors" && iaChoice === "paper")
   ) {
-    displayWinner("you win",userChoice,iaChoice);
+    winnerUser = true;
+    displayWinner("you win", userChoice, iaChoice);
     score = score + 1;
     updateScoreOnLocalStorage(score);
     displayScore(score);
+    console.log(winnerUser + " User");
   } else {
-    displayWinner("you lose ",userChoice,iaChoice);
+    winnerIa = true;
+    displayWinner("you lose ", userChoice, iaChoice);
+    console.log(winnerIa + " IA");
   }
 }
 
@@ -83,21 +93,42 @@ function displayScore(score) {
   scoreDisplay.innerText = score;
 }
 
-function displayWinner(message,user_choice,ia_choice) {
+function displayWinner(message, user_choice, ia_choice) {
   showResult.classList.remove("hidden");
   result.innerText = message;
 
   user_choice_div.classList.add("choice-result");
   ia_choice_div.classList.add("choice-result");
-  user_choice_div.id=`${user_choice}`
-  ia_choice_div.id=`${ia_choice}`
- 
-  user_choice_div.classList.add("animate");
-  ia_choice_div.classList.add("animate");
-  result.classList.add("animate");
+  user_choice_div.id = `${user_choice}`;
+  ia_choice_div.id = `${ia_choice}`;
+
+  setTimeout(() => {
+    group_user_choice.classList.toggle("hidden");
+    group_user_choice.classList.toggle("move");
+  }, 0);
+
+  setTimeout(() => {
+    group_ia_choice.classList.toggle("hidden");
+    group_ia_choice.classList.toggle("move");
+  }, 1000);
+
+  setTimeout(() => {
+    result.classList.toggle("hidden");
+    result.classList.toggle("move");
+    displayWinnerStyleFront(winnerIa, winnerUser);
+  }, 1200);
+
+  setTimeout(() => {
+    playAgain.classList.toggle("hidden"); // Remove the hidden class
+    playAgain.classList.toggle("move");
+
+    user_choice_div.classList.remove("winner");
+    ia_choice_div.classList.remove("winner");
+  }, 1200);
 }
 
 playAgain.addEventListener("click", () => {
+  toggleMoveOrHidden();
   showResult.classList.add("hidden");
 });
 
@@ -111,7 +142,34 @@ reset_score.addEventListener("click", () => {
   score = 0;
   localStorage.setItem("score", score);
   displayScore(score);
-})
+});
+
+function toggleMoveOrHidden() {
+  group_user_choice.classList.toggle("hidden");
+  group_user_choice.classList.toggle("move");
+  group_ia_choice.classList.toggle("hidden");
+  group_ia_choice.classList.toggle("move");
+  result.classList.toggle("hidden");
+  result.classList.toggle("move");
+  playAgain.classList.toggle("hidden"); // Remove the hidden class
+  playAgain.classList.toggle("move");
+}
+
+function displayWinnerStyleFront(winnerIa, winnerUser) {
+  if (winnerIa) {
+    ia_choice_div.classList.add("winner");
+  } else if (winnerUser) {
+    user_choice_div.classList.add("winner");
+  }
+}
+/*
+function setMove() {
+  user_choice_div.classList.add("move");
+  ia_choice_div.classList.add("move");
+  result.classList.add("move");
+  playAgain.classList.add("move");
+}
+*/
 /*
     Afficher les résultats :
     Après avoir déterminé le gagnant de la manche, affichez le résultat à l'utilisateur. Vous pouvez utiliser des alertes, des messages dans le DOM ou d'autres éléments pour afficher le résultat.
