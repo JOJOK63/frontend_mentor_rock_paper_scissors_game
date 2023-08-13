@@ -2,10 +2,10 @@ const main_container = document.querySelector(".main-container");
 const rules_btn = document.getElementById("rules-btn");
 const cross = document.querySelector(".cross");
 const showResult = document.querySelector(".result-container");
-const user_choice_div = document.querySelector(".user-choice");
-const ia_choice_div = document.querySelector(".ia-choice");
 const group_user_choice = document.querySelector(".group-user-choice");
+const user_choice_div = document.querySelector(".user-choice");
 const group_ia_choice = document.querySelector(".group-ia-choice");
+const ia_choice_div = document.querySelector(".ia-choice");
 const result = document.querySelector(
   ".result-container #message-information-result"
 );
@@ -46,7 +46,7 @@ for (let choice of choices_btn) {
   });
 }
 
-function whoWin(userChoice, iaChoice, winnerUser, winnerIa) {
+function whoWin(userChoice, iaChoice) {
   if (
     (userChoice === "paper" && iaChoice === "paper") ||
     (userChoice === "rock" && iaChoice === "rock") ||
@@ -121,15 +121,14 @@ function displayWinner(message, user_choice, ia_choice) {
   setTimeout(() => {
     playAgain.classList.toggle("hidden"); // Remove the hidden class
     playAgain.classList.toggle("move");
-
-    user_choice_div.classList.remove("winner");
-    ia_choice_div.classList.remove("winner");
   }, 1200);
 }
 
 playAgain.addEventListener("click", () => {
-  toggleMoveOrHidden();
+  toggleMoveOrHiddenOrWinner();
   showResult.classList.add("hidden");
+  winnerIa = false;
+  winnerUser = false;
 });
 
 //fct ia choice
@@ -144,7 +143,7 @@ reset_score.addEventListener("click", () => {
   displayScore(score);
 });
 
-function toggleMoveOrHidden() {
+function toggleMoveOrHiddenOrWinner() {
   group_user_choice.classList.toggle("hidden");
   group_user_choice.classList.toggle("move");
   group_ia_choice.classList.toggle("hidden");
@@ -153,12 +152,17 @@ function toggleMoveOrHidden() {
   result.classList.toggle("move");
   playAgain.classList.toggle("hidden"); // Remove the hidden class
   playAgain.classList.toggle("move");
+  user_choice_div.classList.remove("winner");
+  ia_choice_div.classList.remove("winner");
 }
 
 function displayWinnerStyleFront(winnerIa, winnerUser) {
-  if (winnerIa) {
+  console.log(winnerIa, winnerUser);
+  if (winnerIa === true) {
+    console.log("ici winnerIA" + winnerIa);
     ia_choice_div.classList.add("winner");
-  } else if (winnerUser) {
+  } else if (winnerUser === true) {
+    console.log("ici winnerUSer" + winnerUser);
     user_choice_div.classList.add("winner");
   }
 }
