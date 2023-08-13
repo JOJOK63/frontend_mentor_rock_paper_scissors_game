@@ -13,6 +13,17 @@
       href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&display=swap"
       rel="stylesheet"
     />
+
+    <link
+      href="css/styles-mobile.css"
+      rel="stylesheet"
+      media="screen and (max-width: 1365px)"
+    />
+    <link
+      href="css/styles-desktop.css"
+      rel="stylesheet"
+      media="screen and (min-width: 1365px)"
+    />
   </head>
   <body>
     <div class="main-container">
@@ -33,17 +44,20 @@
 
       <div class="result-container hidden">
         <div class="display-group-choice">
-          <div class="group">
+          <div class="group group-user-choice hidden">
             <div class="user-choice"></div>
             <p>YOU PICKED</p>
           </div>
-          <div class="group">
+
+          <div class="group group-ia-choice hidden">
             <div class="ia-choice"></div>
             <p>THE HOUSE PICKED</p>
           </div>
         </div>
-        <p id="message-information-result"></p>
-        <button id="play-again">PLAY AGAIN</button>
+        <div>
+          <p id="message-information-result" class="hidden"></p>
+          <button id="play-again" class="hidden">PLAY AGAIN</button>
+        </div>
       </div>
 
       <footer>
