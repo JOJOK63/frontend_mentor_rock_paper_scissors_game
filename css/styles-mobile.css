@@ -1,6 +1,6 @@
 * {
   box-sizing: border-box;
-  /*box-shadow: 0 0 0 1px red inset;*/
+  box-shadow: 0 0 0 1px red inset;
   margin: 0;
   padding: 0;
 }
@@ -60,6 +60,7 @@ body {
 
 header {
   margin: 0 auto 50px;
+  height: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -327,6 +328,325 @@ footer button {
   animation-fill-mode: forwards;
 }
 
+@keyframes mouvement {
+  from {
+    opacity: 0%;
+  }
+  to {
+    opacity: 100%;
+  }
+}
+
+/* need to work the code next to this commentary because create a bit with ChatGPT */
+
+.winner {
+  background-color: white;
+  position: relative; /* Permet de positionner l'ombre par rapport à l'élément */
+}
+
+.winner::before,
+.winner::after {
+  content: "";
+  position: absolute;
+  top: -50%; /* Ajustez la distance verticale de l'ombre */
+  left: -50%; /* Ajustez la distance horizontale de l'ombre */
+  right: -50%; /* Ajustez la distance horizontale de l'ombre */
+  bottom: -50%; /* Ajustez la distance verticale de l'ombre */
+  width: 200%; /* Largeur de l'ombre */
+  height: 200%; /* Hauteur de l'ombre */
+  border-radius: 50%; /* Forme circulaire */
+  opacity: 0.5; /* Ajustez l'opacité de l'ombre */
+  z-index: -1; /* Place l'ombre derrière l'élément */
+}
+
+.winner::before {
+  background: radial-gradient(white, transparent); /* Dégradé radial */
+}
+
+.winner::after {
+  width: 180%; /* Largeur de l'anneau */
+  height: 180%; /* Hauteur de l'anneau */
+  background: radial-gradient(transparent, white); /* Dégradé radial inversé */
+  opacity: 0.3; /* Ajustez l'opacité de l'anneau */
+  z-index: -2; /* Place l'anneau derrière l'ombre */
+
+  /* Centre l'anneau blanc dans l'ombre */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media screen and (min-width: 1440px) {
+  body {
+    background: var(--radial-gradient);
+  }
+  .main-container {
+    background: transparent;
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  header {
+    width: 40vw;
+  }
+  header .title {
+    background-size: 130px;
+    width: 150px;
+    height: 100px;
+  }
+
+  header .score {
+    width: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    background-color: white;
+    color: var(--dark-text);
+  }
+
+  .score h2 {
+    font-size: 12px;
+  }
+
+  .score span {
+    font-size: 30px;
+    font-weight: 600;
+  }
+
+  .score .reset {
+    color: var(--dark-text);
+    background-color: transparent;
+    border: none;
+    padding: 3px 0 5px 0;
+    cursor: pointer;
+    background-image: url(../assets/images/reset_undo_arrow_icon_149006.svg);
+    width: 16px;
+    height: 16px;
+    background-position: center center;
+    background-size: 10px;
+    background-repeat: no-repeat;
+  }
+
+  .choice-group {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+  }
+
+  .choice {
+    position: relative;
+    /* Nécessaire pour positionner les pseudo-éléments */
+    width: 120px;
+    height: 120px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    border-radius: 60px;
+    border: 15px solid;
+    background-color: white;
+    background-size: 50px;
+    background-position: center center;
+  }
+
+  .choice::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    /* Marge intérieure négative pour simuler l'ombre à l'intérieur de la bordure */
+    box-shadow: inset 0px 4px 2px 2px rgba(0, 0, 0, 0.2);
+    /* Ombre interne */
+    border-radius: 60px;
+  }
+
+  #paper {
+    background-image: url("../assets/images/icon-paper.svg");
+    border-color: #4a69f6;
+    /* Modifier la couleur de la bordure */
+    box-shadow: 0px 3px 0px 1px #2d449a;
+  }
+
+  #scissors {
+    background-image: url("../assets/images/icon-scissors.svg");
+    border-color: #e9a11a;
+    /* Modifier la couleur de la bordure */
+    box-shadow: 0px 3px 0px 1px #c26d24;
+  }
+
+  #rock {
+    background-image: url("../assets/images/icon-rock.svg");
+    border-color: #e03d57;
+    /* Modifier la couleur de la bordure */
+    box-shadow: 0px 3px 0px 1px #981a38;
+  }
+
+  footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 50px;
+  }
+
+  footer button {
+    cursor: pointer;
+    width: 120px;
+    height: 40px;
+    background-color: transparent;
+    color: white;
+    border: 2px solid var(--white-opacity);
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 3px;
+  }
+
+  /**  CSS pour la page RULES*/
+  .hidden {
+    display: none !important;
+  }
+
+  .rules {
+    width: 100%;
+    height: 100vh;
+    background-color: white;
+  }
+
+  .rules-title {
+    padding: 50px;
+    color: var(--title-dark-grey);
+    font-weight: 700;
+    font-size: 30px;
+  }
+
+  .rules-details {
+    width: 100%;
+    height: 500px;
+    background-image: url(../assets/images/image-rules.svg);
+    background-repeat: no-repeat;
+    background-size: 320px;
+    background-position: center center;
+  }
+
+  .cross {
+    width: 100%;
+    height: 30px;
+    background-image: url(../assets/images/icon-close.svg);
+    background-repeat: no-repeat;
+    background-size: 20px;
+    text-align: center;
+    background-position: center center;
+  }
+
+  /* css for message and play again button*/
+  .result-container {
+    background: var();
+    position: absolute;
+    top: 150px;
+    /* Position relative au bas du header */
+    left: 50%;
+    /* Centrer horizontalement */
+    transform: translateX(-50%);
+    /* Centrer horizontalement */
+    width: 360px;
+    height: 450px;
+    z-index: 2000;
+    background: var(--radial-gradient);
+    color: white;
+  }
+
+  .display-group-choice {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+    margin: 40px 0;
+  }
+
+  .group {
+    width: 150px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .choice-result {
+    width: 100px;
+    height: 100px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    border-radius: 100px;
+    border: 15px solid;
+    background-color: white;
+    background-size: 50px;
+    background-position: center center;
+  }
+
+  .user-choice {
+  }
+
+  .ia-choice {
+  }
+
+  .group p {
+    font-weight: 600;
+    font-size: 12px;
+  }
+
+  .result-container #message-information-result {
+    font-size: 50px;
+    font-weight: 700;
+    height: auto;
+    color: white;
+    text-transform: uppercase;
+    padding: 5px;
+    margin-bottom: 30px;
+  }
+
+  #play-again {
+    width: 200px;
+    height: 45px;
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 2px;
+    color: var(--title-dark-grey);
+    background-color: white;
+  }
+
+  .group-user-choice {
+    opacity: 0;
+    animation-delay: 0s;
+  }
+
+  .group-ia-choice {
+    opacity: 0;
+    animation-delay: 1s;
+  }
+
+  #message-information-result {
+    opacity: 0;
+    animation-delay: 1.5s;
+  }
+
+  #play-again {
+    opacity: 0;
+    animation-delay: 2s;
+  }
+
+  .move {
+    animation: mouvement 1s ease-in-out 1s;
+    animation-fill-mode: forwards;
+  }
+}
 @keyframes mouvement {
   from {
     opacity: 0%;

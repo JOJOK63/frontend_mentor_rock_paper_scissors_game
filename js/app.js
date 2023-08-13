@@ -63,11 +63,9 @@ function whoWin(userChoice, iaChoice) {
     score = score + 1;
     updateScoreOnLocalStorage(score);
     displayScore(score);
-    console.log(winnerUser + " User");
   } else {
     winnerIa = true;
     displayWinner("you lose ", userChoice, iaChoice);
-    console.log(winnerIa + " IA");
   }
 }
 
@@ -157,12 +155,9 @@ function toggleMoveOrHiddenOrWinner() {
 }
 
 function displayWinnerStyleFront(winnerIa, winnerUser) {
-  console.log(winnerIa, winnerUser);
   if (winnerIa === true) {
-    console.log("ici winnerIA" + winnerIa);
     ia_choice_div.classList.add("winner");
   } else if (winnerUser === true) {
-    console.log("ici winnerUSer" + winnerUser);
     user_choice_div.classList.add("winner");
   }
 }
