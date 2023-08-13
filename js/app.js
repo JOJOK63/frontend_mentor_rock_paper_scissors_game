@@ -162,6 +162,7 @@ function displayWinnerStyleFront(winnerIa, winnerUser) {
     user_choice_div.classList.add("winner");
   }
 }
+
 /*
 function setMove() {
   user_choice_div.classList.add("move");

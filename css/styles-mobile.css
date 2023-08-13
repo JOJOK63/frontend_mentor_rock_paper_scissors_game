@@ -1,6 +1,6 @@
 * {
   box-sizing: border-box;
-  box-shadow: 0 0 0 1px red inset;
+  /*box-shadow: 0 0 0 1px red inset;*/
   margin: 0;
   padding: 0;
 }
@@ -301,6 +301,10 @@ footer button {
   letter-spacing: 2px;
   color: var(--title-dark-grey);
   background-color: white;
+}
+
+#play-again:hover {
+  color: red;
 }
 
 .group-user-choice {
